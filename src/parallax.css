@@ -1,0 +1,161 @@
+/* ============================= */
+/* GLOBAL */
+/* ============================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0a0f1c;
+  color: white;
+  font-family: system-ui, sans-serif;
+}
+
+
+/* ============================= */
+/* HERO */
+/* ============================= */
+
+.hero {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+  background: black;
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  width: 100%;
+  height: auto;
+
+  transform: translateX(-50%);
+  object-fit: contain;
+  object-position: center top;
+
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 90%;
+  max-width: 800px;
+
+  text-align: center;
+  color: white;
+  z-index: 5;
+}
+
+.title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  text-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+
+/* ============================= */
+/* CONTENT */
+/* ============================= */
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h2 {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+tr td {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Project list with icons */
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+  font-size: 1.15rem;
+}
+
+.project-list .icon {
+  font-size: 1.4rem;
+  width: 1.8rem;
+  text-align: center;
+}
+
+
+/* ============================= */
+/* TWINT BOX */
+/* ============================= */
+
+.twint-box {
+  background: rgba(255,255,255,0.05);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* TWINT + IBAN */
+.pay-lines {
+  margin-bottom: 1.5rem;
+}
+
+.pay-line {
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+}
+
+.twint-img {
+  margin-top: 1.5rem;
+  width: 90%;          /* füllt fast die Box */
+ /*  max-width: 350px;    optionaler max-Wert */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+}
+
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+
+footer {
+  margin-top: 5rem;
+  text-align: center;
+  padding-bottom: 3rem;
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
