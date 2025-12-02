@@ -5,6 +5,7 @@ export default function App() {
 
   useEffect(() => {
     const img = document.getElementById("parallax-img");
+    if (!img) return;
 
     const onScroll = () => {
       const scrolled = window.scrollY;
@@ -16,12 +17,19 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const base = import.meta.env.BASE_URL;
+
   return (
     <>
       {/* HERO */}
       <header className="hero">
-        <img src={`${import.meta.env.BASE_URL}hero.jpg`} className="hero-img" />
-        
+        <img
+          src={`${base}hero.jpg`}
+          id="parallax-img"
+          className="hero-img"
+          alt="Matterhorn Hero"
+        />
+
         <div className="overlay">
           <h1 className="title">Matterhorn 2026</h1>
           <p className="subtitle">Mein persönliches Gipfelprojekt</p>
@@ -73,7 +81,12 @@ export default function App() {
               <p className="pay-line"><b>TWINT</b> 📲 078 623 04 01</p>
               <p className="pay-line"><b>IBAN</b> CH37 0878 1000 1630 0050 0</p>
             </div>
-            <img src={`${import.meta.env.BASE_URL}QR.png`} className="qr-img" />
+
+            <img
+              src={`${base}QR.png`}
+              className="qr-img"
+              alt="TWINT QR Code"
+            />
           </div>
         </section>
 

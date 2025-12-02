@@ -1,27 +1,54 @@
-/* ============================= */
-/* GLOBAL */
-/* ============================= */
+/* ========================================================= */
+/* GLOBAL RESET + BASE                                        */
+/* ========================================================= */
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #070b16;
+  --fg: #ffffff;
+  --fg-dim: rgba(255,255,255,0.75);
+  --accent: #4eaaff;
+  --card-bg: rgba(255,255,255,0.06);
+  --radius: 14px;
+
+  --space-xs: 0.25rem;
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+  --space-l: 2rem;
+  --space-xl: 4rem;
 }
 
 body {
-  background: #0a0f1c;
-  color: white;
-  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, Roboto, sans-serif;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  letter-spacing: 0.4px;
+}
+
+p, td, li {
+  font-size: 1.1rem;
 }
 
 
-/* ============================= */
-/* HERO */
-/* ============================= */
+/* ========================================================= */
+/* HERO SECTION (Parallax Safe Version)                       */
+/* ========================================================= */
 
 .hero {
   position: relative;
   height: 80vh;
+  width: 100%;
   overflow: hidden;
   background: black;
 }
@@ -34,128 +61,199 @@ body {
   width: 100%;
   height: auto;
 
-  transform: translateX(-50%);
   object-fit: contain;
   object-position: center top;
 
+  transform: translateX(-50%);
+  will-change: transform;
   z-index: 1;
 }
 
+/* Overlay Text */
 .overlay {
   position: absolute;
-  bottom: 8%;
+  bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
 
+  text-align: center;
   width: 90%;
   max-width: 800px;
 
-  text-align: center;
-  color: white;
   z-index: 5;
 }
 
 .title {
-  font-size: 3.2rem;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-weight: 700;
-  text-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  text-shadow: 0 0 22px rgba(0,0,0,0.6);
 }
 
 .subtitle {
+  margin-top: var(--space-s);
   font-size: 1.2rem;
   opacity: 0.9;
 }
 
 
-/* ============================= */
-/* CONTENT */
-/* ============================= */
+
+/* ========================================================= */
+/* CONTENT WRAPPER                                            */
+/* ========================================================= */
 
 .content {
+  width: 100%;
   max-width: 900px;
+  padding: var(--space-l) var(--space-m);
   margin: 0 auto;
-  padding: 2rem;
 }
 
 h2 {
-  margin-top: 4rem;
-  margin-bottom: 1rem;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-m);
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+p {
+  margin-bottom: var(--space-m);
 }
 
-tr td {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+
+
+/* ========================================================= */
+/* SCROLL ANIMATIONS                                          */
+/* ========================================================= */
+
+.fade {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.9s ease forwards;
 }
 
-/* Project list with icons */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade:nth-of-type(1) { animation-delay: 0.15s; }
+.fade:nth-of-type(2) { animation-delay: 0.25s; }
+.fade:nth-of-type(3) { animation-delay: 0.35s; }
+.fade:nth-of-type(4) { animation-delay: 0.45s; }
+.fade:nth-of-type(5) { animation-delay: 0.55s; }
+
+
+
+/* ========================================================= */
+/* PROJECT LIST                                               */
+/* ========================================================= */
+
 .project-list {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .project-list li {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin: 0.5rem 0;
-  font-size: 1.15rem;
+  gap: var(--space-s);
+  margin: var(--space-s) 0;
 }
 
-.project-list .icon {
+.icon {
   font-size: 1.4rem;
-  width: 1.8rem;
+  width: 2rem;
   text-align: center;
 }
 
 
-/* ============================= */
-/* TWINT BOX */
-/* ============================= */
+
+/* ========================================================= */
+/* TABLE (Kosten)                                             */
+/* ========================================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-m);
+}
+
+td {
+  padding: var(--space-s) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+td:last-child {
+  text-align: right;
+  opacity: 0.9;
+}
+
+
+
+/* ========================================================= */
+/* TWINT BOX                                                  */
+/* ========================================================= */
 
 .twint-box {
-  background: rgba(255,255,255,0.05);
-  padding: 1.5rem;
-  border-radius: 12px;
+  margin-top: var(--space-l);
+  padding: var(--space-l) var(--space-m);
+  background: var(--card-bg);
+  border-radius: var(--radius);
   text-align: center;
-  margin-top: 1.5rem;
-}
-
-/* TWINT + IBAN */
-.pay-lines {
-  margin-bottom: 1.5rem;
+  backdrop-filter: blur(4px);
 }
 
 .pay-line {
-  font-size: 1.1rem;
-  margin: 0.3rem 0;
+  margin: var(--space-xs) 0;
+  font-size: 1.15rem;
 }
 
-.twint-img {
-  margin-top: 1.5rem;
-  width: 90%;          /* füllt fast die Box */
- /*  max-width: 350px;    optionaler max-Wert */
+/* Optimiertes QR-Bild */
+.qr-img {
+  margin-top: var(--space-m);
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: var(--radius);
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 12px;
 }
 
 
-/* ============================= */
-/* FOOTER */
-/* ============================= */
+
+/* ========================================================= */
+/* FOOTER                                                     */
+/* ========================================================= */
 
 footer {
-  margin-top: 5rem;
+  margin-top: var(--space-xl);
+  padding-bottom: var(--space-l);
   text-align: center;
-  padding-bottom: 3rem;
   opacity: 0.5;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+}
+
+
+
+/* ========================================================= */
+/* RESPONSIVE BREAKPOINTS                                     */
+/* ========================================================= */
+
+@media (max-width: 480px) {
+
+  .hero {
+    height: 70vh;
+  }
+
+  .qr-img {
+    max-width: 200px;  /* verhindert Überlauf auf Mini-Screens */
+  }
+}
+
+@media (max-width: 360px) {
+  .title { font-size: 1.9rem; }
+  .subtitle { font-size: 1rem; }
 }
