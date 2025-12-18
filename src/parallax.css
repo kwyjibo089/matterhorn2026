@@ -222,6 +222,18 @@ td:last-child {
   margin-right: auto;
 }
 
+/* Center Instagram widget and constrain its max width */
+#instagram-widget-root {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-m);
+}
+
+#instagram-widget-root > div {
+  width: 100%;
+  max-width: 680px; /* adjust as needed */
+}
+
 
 
 /* ========================================================= */

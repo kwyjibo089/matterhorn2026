@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./parallax.css";
+import InstagramWidget from "./components/InstagramWidget";
 
 export default function App() {
 
@@ -89,6 +90,8 @@ export default function App() {
             />
           </div>
         </section>
+
+        <InstagramWidget elfsightId="389467e8-b2c0-43f4-bab2-ee6390b1ffd8" />
 
         <section className="fade">
           <h2>Was passiert mit Restgeld?</h2>
