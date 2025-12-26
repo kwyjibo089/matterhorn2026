@@ -383,3 +383,6 @@ footer {
   .party-date { flex: 0 0 76px; }
 }
 
+.analytics-toggle { display: inline-block; margin-left: 1rem; font-size: 0.95rem; }
+.analytics-toggle input { transform: translateY(2px); }
+
