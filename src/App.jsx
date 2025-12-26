@@ -30,7 +30,7 @@ export default function App() {
   };
 
   const closeModal = () => {
-    setShowModal(false);
+    setShowModal(false);git 
     setModalSrc("");
     document.body.style.overflow = "";
   };
@@ -42,6 +42,26 @@ export default function App() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [showModal]);
+
+  // Analytics: send hit to Cloudflare Pages function
+  useEffect(() => {
+    try {
+      const key = 'mh_client_id_v1';
+      let clientId = localStorage.getItem(key);
+      if (!clientId) {
+        clientId = Math.random().toString(36).slice(2, 10);
+        localStorage.setItem(key, clientId);
+      }
+      
+      fetch('/api/hit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId })
+      }).catch(() => {});
+    } catch (e) {
+      // silent
+    }
+  }, []);
 
   return (
     <>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - Matterhorn 2026</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .container {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; text-align: center; }
+    .subtitle { text-align: center; opacity: 0.8; margin-bottom: 2rem; font-size: 0.95rem; }
+    .stats { display: grid; gap: 1.5rem; }
+    .stat-card {
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: 1rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+    .refresh-btn {
+      margin-top: 2rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .refresh-btn:hover { background: rgba(255,255,255,0.3); }
+    .loading { text-align: center; opacity: 0.7; padding: 2rem; }
+    .error { background: rgba(255,100,100,0.2); padding: 1rem; border-radius: 8px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Analytics</h1>
+    <p class="subtitle">Matterhorn 2026 Visitor Stats</p>
+    
+    <div id="content" class="loading">Loading...</div>
+    
+    <button class="refresh-btn" onclick="loadStats()">🔄 Refresh</button>
+  </div>
+
+  <script>
+    async function loadStats() {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="loading">Loading...</div>';
+      
+      try {
+        const res = await fetch('/api/hit');
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+        
+        content.innerHTML = `
+          <div class="stats">
+            <div class="stat-card">
+              <div class="stat-value">${data.total || 0}</div>
+              <div class="stat-label">Total Pageviews</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">${data.unique || 0}</div>
+              <div class="stat-label">Unique Visitors</div>
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        content.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+      }
+    }
+    
+    loadStats();
+    setInterval(loadStats, 30000);
+  </script>
+</body>
+</html>
