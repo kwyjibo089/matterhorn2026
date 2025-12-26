@@ -22,13 +22,6 @@ export default function App() {
 
   const [showModal, setShowModal] = useState(false);
   const [modalSrc, setModalSrc] = useState("");
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(() => {
-    try {
-      return localStorage.getItem('analytics_optout') !== '1';
-    } catch (e) {
-      return true;
-    }
-  });
 
   const openModal = (src) => {
     setModalSrc(src);
@@ -49,53 +42,6 @@ export default function App() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [showModal]);
-
-  // Fire a Plausible pageview if the script was loaded
-  useEffect(() => {
-    try {
-      if (!analyticsEnabled) return;
-      if (typeof window !== 'undefined' && window.plausible) {
-        window.plausible('pageview');
-      }
-    } catch (e) {
-      // silent
-    }
-  }, []);
-
-  // Load Plausible dynamically (used when user enables analytics at runtime)
-  const loadPlausible = () => {
-    try {
-      if (typeof document === 'undefined') return;
-      var domain = document.querySelector('meta[name="plausible-domain"]')?.content || '';
-      if (!domain) return;
-      var host = location.hostname;
-      if (host === 'localhost' || host === '127.0.0.1') return;
-      // Avoid double-insert
-      if (document.querySelector('script[data-domain][src*="plausible.io/js/plausible.js"]')) return;
-      var s = document.createElement('script');
-      s.setAttribute('defer','');
-      s.setAttribute('async','');
-      s.setAttribute('data-domain', domain);
-      s.src = 'https://plausible.io/js/plausible.js';
-      document.head.appendChild(s);
-    } catch (e) { /* silent */ }
-  };
-
-  const toggleAnalytics = () => {
-    try {
-      const enable = !analyticsEnabled;
-      setAnalyticsEnabled(enable);
-      localStorage.setItem('analytics_optout', enable ? '0' : '1');
-      if (enable) {
-        // Load script and fire pageview when ready
-        loadPlausible();
-        setTimeout(() => { try { if (window.plausible) window.plausible('pageview'); } catch(e){} }, 600);
-      } else {
-        // Disable future calls: replace plausible with noop
-        try { window.plausible = function(){}; } catch(e){}
-      }
-    } catch (e) {}
-  };
 
   return (
     <>
@@ -202,12 +148,6 @@ export default function App() {
 
         <footer>
           Roman · Matterhorn Projekt 2026
-          <div className="analytics-toggle">
-            <label>
-              <input type="checkbox" checked={analyticsEnabled} onChange={toggleAnalytics} />{' '}
-              Analytics {analyticsEnabled ? 'on' : 'off'}
-            </label>
-          </div>
         </footer>
 
       </main>

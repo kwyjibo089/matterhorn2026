@@ -3,30 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="plausible-domain" content="matterhorn2026.ch" />
     <title>Matterhorn 2026</title>
   </head>
   <body>
     <div id="root"></div>
-    <!-- Plausible loader: only injects script when a domain is set and not on localhost -->
-    <script>
-      (function(){
-        try {
-          var domain = document.querySelector('meta[name="plausible-domain"]')?.content || '';
-          if (!domain) return;
-          var host = location.hostname;
-          if (host === 'localhost' || host === '127.0.0.1') return;
-          // Respect user opt-out stored in localStorage (set to '1' to opt-out)
-          try { if (localStorage.getItem('analytics_optout') === '1') return; } catch(e) {}
-          var s = document.createElement('script');
-          s.setAttribute('defer','');
-          s.setAttribute('async','');
-          s.setAttribute('data-domain', domain);
-          s.src = 'https://plausible.io/js/plausible.js';
-          document.head.appendChild(s);
-        } catch(e) { /* silent */ }
-      })();
-    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
