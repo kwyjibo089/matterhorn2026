@@ -30,7 +30,7 @@ export default function App() {
   };
 
   const closeModal = () => {
-    setShowModal(false);git 
+    setShowModal(false);
     setModalSrc("");
     document.body.style.overflow = "";
   };
