@@ -1,0 +1,49 @@
+.instagram-widget-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.instagram-widget-container {
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Override Juicer's column layout */
+.instagram-widget-container .j-stacker-wrapper {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.instagram-widget-container .j-stacker {
+  width: 100% !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 20px !important;
+}
+
+.instagram-widget-container .j-stack {
+  width: 100% !important;
+  max-width: 350px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.instagram-widget-container .feed-item {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .instagram-widget-container .j-stack {
+    max-width: 300px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .instagram-widget-container .j-stack {
+    max-width: 100% !important;
+  }
+}

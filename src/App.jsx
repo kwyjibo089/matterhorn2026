@@ -144,13 +144,13 @@ export default function App() {
           </div>
         </section>
 
-        <InstagramWidget elfsightId="389467e8-b2c0-43f4-bab2-ee6390b1ffd8" />      
-
-        <footer>
-          Roman · Matterhorn Projekt 2026
-        </footer>
-
       </main>
+
+      <InstagramWidget feedName="matterhorn2026" />
+
+      <footer>
+        Roman · Matterhorn Projekt 2026
+      </footer>
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
