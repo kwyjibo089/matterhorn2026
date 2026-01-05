@@ -144,9 +144,9 @@ export default function App() {
           </div>
         </section>
 
-      </main>
+        <InstagramWidget feedName="matterhorn2026" />
 
-      <InstagramWidget feedName="matterhorn2026" />
+      </main>
 
       <footer>
         Roman · Matterhorn Projekt 2026

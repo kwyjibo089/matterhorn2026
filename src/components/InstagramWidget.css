@@ -1,12 +1,17 @@
 .instagram-widget-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 2rem 1rem;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .instagram-widget-container {
   max-width: 1200px;
   width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
 }
 
 /* Override Juicer's column layout */
@@ -22,12 +27,12 @@
   display: flex !important;
   flex-wrap: wrap !important;
   justify-content: center !important;
-  gap: 20px !important;
+  gap: 16px !important;
 }
 
 .instagram-widget-container .j-stack {
   width: 100% !important;
-  max-width: 350px !important;
+  max-width: 320px !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
@@ -36,6 +41,32 @@
   margin-bottom: 0 !important;
 }
 
+/* Laptop full screen (1024px - 1440px) */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .instagram-widget-container .j-stack {
+    max-width: 300px !important;
+  }
+  
+  .instagram-widget-container .j-stacker {
+    gap: 24px !important;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1441px) {
+  .instagram-widget-container .j-stack {
+    max-width: 350px !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .instagram-widget-container .j-stack {
+    max-width: 280px !important;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .instagram-widget-container .j-stack {
     max-width: 300px !important;
@@ -46,4 +77,17 @@
   .instagram-widget-container .j-stack {
     max-width: 100% !important;
   }
+  
+  .instagram-widget-container {
+    padding: 0 0.5rem;
+  }
+}
+
+/* Hide post text, only show account name and photo */
+.instagram-widget-container .j-message {
+  display: none !important;
+}
+
+.instagram-widget-container .j-text {
+  display: none !important;
 }
