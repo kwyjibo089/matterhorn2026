@@ -146,6 +146,19 @@ export default function App() {
 
         <InstagramWidget feedName="matterhorn2026" />
 
+        <section className="fade instagram-widget-wrapper">
+          <div className="party-card instagram-widget-container" style={{ flexDirection: 'column', alignItems: 'center' }}>
+            <img 
+              src={`${base}1gegen100.png`} 
+              alt="1 gegen 100" 
+              style={{ maxWidth: '100%', height: 'auto', display: 'block', margin: '0 auto', marginTop: '1.5rem' }}
+            />
+            <h3 style={{ width: '100%', textAlign: 'center', marginTop: '1.5rem', marginBottom: '2rem' }}>
+              Es war Schicksal. Leider ist das Geld schon für den Camper ausgegeben worden 😉
+            </h3>
+          </div>
+        </section>
+
       </main>
 
       <footer>

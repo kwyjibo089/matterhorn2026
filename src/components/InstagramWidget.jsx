@@ -16,9 +16,10 @@ export default function InstagramWidget({ feedName = "matterhorn2026" }) {
   }, [feedName]);
 
   return (
-    <section className="fade instagram-widget-wrapper">        
-      <div className="party-card instagram-widget-container">         
+    <section className="fade instagram-widget-wrapper">
+      <div className="party-card instagram-widget-container">
         <ul className="juicer-feed" data-feed-id={feedName}></ul>
+        <h3>Folgt mir für Updates auf Instagram</h3>
       </div>
     </section>
   );
